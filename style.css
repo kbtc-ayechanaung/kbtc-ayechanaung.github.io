@@ -1,47 +1,47 @@
 /* ===== KAUNG KAUNG — STYLE SYSTEM v4 ===== */
 
-/* --- DARK MODE — Cosmic Violet / Dark Grey --- */
+/* --- DARK MODE — Neon Street (reference match) --- */
 :root {
-  --bg: #0d0b14;
-  --surface: #13111c;
-  --elevated: #1b1826;
-  --border: #2a2535;
-  --text: #e4e0ed;
-  --muted: #8882a0;
-  --accent: #a78bfa;
-  --accent-rgb: 167, 139, 250;
-  --accent-warm: #f472b6;
-  --nav-bg: rgba(13, 11, 20, 0.93);
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --elevated: #1a1a1a;
+  --border: #282828;
+  --text: #e8e8e8;
+  --muted: #777777;
+  --accent: #d4ff00;
+  --accent-rgb: 212, 255, 0;
+  --accent-warm: #ff6b35;
+  --nav-bg: rgba(10, 10, 10, 0.92);
   --grain-opacity: 0.025;
   --img-grayscale: 25%;
-  --img-contrast: 1.12;
-  --img-brightness: 0.85;
-  --scrollbar-track: #0d0b14;
-  --scrollbar-thumb: #2a2535;
-  --timeline-dot-bg: #0d0b14;
-  --stroke-color: #a78bfa;
+  --img-contrast: 1.1;
+  --img-brightness: 0.88;
+  --scrollbar-track: #0a0a0a;
+  --scrollbar-thumb: #333333;
+  --timeline-dot-bg: #0a0a0a;
+  --stroke-color: #d4ff00;
 }
 
-/* --- LIGHT MODE — Warm Sand / Terracotta Film --- */
+/* --- LIGHT MODE — Warm Ivory / Olive Gold --- */
 html.light {
-  --bg: #f5f1eb;
-  --surface: #ece7de;
-  --elevated: #e1dbd0;
-  --border: #cdc5b6;
-  --text: #231f1a;
-  --muted: #7d7469;
-  --accent: #c2552d;
-  --accent-rgb: 194, 85, 45;
-  --accent-warm: #b91c1c;
-  --nav-bg: rgba(245, 241, 235, 0.93);
-  --grain-opacity: 0.018;
+  --bg: #f8f6f1;
+  --surface: #efece5;
+  --elevated: #e5e1d8;
+  --border: #d0cbbf;
+  --text: #1a1815;
+  --muted: #7a7568;
+  --accent: #8b7e2a;
+  --accent-rgb: 139, 126, 42;
+  --accent-warm: #c44b25;
+  --nav-bg: rgba(248, 246, 241, 0.92);
+  --grain-opacity: 0.012;
   --img-grayscale: 5%;
-  --img-contrast: 1.06;
-  --img-brightness: 0.97;
-  --scrollbar-track: #f5f1eb;
-  --scrollbar-thumb: #cdc5b6;
-  --timeline-dot-bg: #f5f1eb;
-  --stroke-color: #c2552d;
+  --img-contrast: 1.04;
+  --img-brightness: 0.98;
+  --scrollbar-track: #f8f6f1;
+  --scrollbar-thumb: #d0cbbf;
+  --timeline-dot-bg: #f8f6f1;
+  --stroke-color: #8b7e2a;
 }
 
 /* --- THEME TRANSITION (only when toggling) --- */
