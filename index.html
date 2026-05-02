@@ -4,11 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kaung Kaung — Street & Documentary Photographer</title>
-  <meta name="description" content="Portfolio of Kaung Kaung (Thaw Zin Htet) — Burmese documentary and street photographer capturing raw moments of life, resistance, and culture from the Thai-Myanmar border." />
-  <meta name="keywords" content="Kaung Kaung, Thaw Zin Htet, street photography, documentary, Myanmar, Mae Sot, portfolio" />
-  <meta property="og:title" content="Kaung Kaung — Street & Documentary Photographer" />
-  <meta property="og:description" content="Raw moments. Real stories. Documentary photography from the Thai-Myanmar border." />
-  <meta property="og:type" content="website" />
+  <meta name="description" content="Portfolio of Kaung Kaung (Thaw Zin Htet) — Burmese documentary and street photographer." />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,294 +12,218 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-            serif: ['Playfair Display', 'serif'],
-          },
-          colors: {
-            kk: {
-              bg: '#060606',
-              surface: '#0e0e0e',
-              elevated: '#171717',
-              border: '#1e1e1e',
-              text: '#e8e8e8',
-              muted: '#6b6b6b',
-              accent: '#c8ff00',
-              warm: '#ff6b35',
-            }
-          },
-          animation: {
-            'fade-up': 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-            'fade-in': 'fadeIn 0.6s ease forwards',
-            'grain': 'grain 8s steps(10) infinite',
-            'pulse-dot': 'pulseDot 2s ease-in-out infinite',
-          },
-          keyframes: {
-            fadeUp: { '0%': { opacity: '0', transform: 'translateY(30px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-            grain: { '0%, 100%': { transform: 'translate(0,0)' }, '10%': { transform: 'translate(-5%,-10%)' }, '30%': { transform: 'translate(3%,-15%)' }, '50%': { transform: 'translate(12%,9%)' }, '70%': { transform: 'translate(9%,4%)' }, '90%': { transform: 'translate(-1%,7%)' } },
-            pulseDot: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.3' } },
-          }
+      theme: { extend: {
+        fontFamily: { sans: ['Space Grotesk','system-ui','sans-serif'], mono: ['JetBrains Mono','monospace'], serif: ['Playfair Display','serif'] },
+        animation: { 'grain': 'grain 8s steps(10) infinite', 'pulse-dot': 'pulseDot 2s ease-in-out infinite' },
+        keyframes: {
+          grain: { '0%,100%':{transform:'translate(0,0)'},'10%':{transform:'translate(-5%,-10%)'},'50%':{transform:'translate(12%,9%)'},'90%':{transform:'translate(-1%,7%)'} },
+          pulseDot: { '0%,100%':{opacity:'1'},'50%':{opacity:'0.3'} }
         }
-      }
+      }}
     }
   </script>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-kk-bg text-kk-text font-sans antialiased overflow-x-hidden">
+<body class="font-sans antialiased overflow-x-hidden" style="background:var(--bg);color:var(--text)">
 
-  <!-- Cursor Glow (desktop only) -->
   <div id="cursor-glow"></div>
+  <div id="grain-overlay" class="fixed inset-0 pointer-events-none z-[9999] animate-grain"></div>
 
-  <!-- Film Grain -->
-  <div id="grain-overlay" class="fixed inset-0 pointer-events-none z-[9999] opacity-[0.025] animate-grain"></div>
-
-  <!-- ========== NAVIGATION ========== -->
+  <!-- NAV -->
   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-    <div class="max-w-7xl mx-auto px-5 md:px-8 py-5 flex items-center justify-between">
-      <a href="#hero" class="flex items-center gap-3 group" id="nav-logo">
-        <span class="w-10 h-10 border border-kk-accent text-kk-accent font-bold text-sm flex items-center justify-center tracking-wider transition-all duration-300 group-hover:bg-kk-accent group-hover:text-kk-bg">KK</span>
-        <span class="font-mono text-xs tracking-[0.15em] text-kk-muted hidden sm:block">KAUNG KAUNG</span>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-5 flex items-center justify-between">
+      <a href="#hero" class="flex items-center gap-2 sm:gap-3 group" id="nav-logo">
+        <span class="w-9 h-9 sm:w-10 sm:h-10 border font-bold text-sm flex items-center justify-center tracking-wider transition-all duration-300" style="border-color:var(--accent);color:var(--accent)">KK</span>
+        <span class="font-mono text-[10px] sm:text-xs tracking-[0.15em] hidden sm:block" style="color:var(--muted)">KAUNG KAUNG</span>
       </a>
-      <div class="hidden md:flex items-center gap-8">
-        <a href="#work" class="nav-link font-mono text-[11px] tracking-[0.15em] uppercase text-kk-muted hover:text-kk-accent transition-colors duration-300" data-section="work">Work</a>
-        <a href="#about" class="nav-link font-mono text-[11px] tracking-[0.15em] uppercase text-kk-muted hover:text-kk-accent transition-colors duration-300" data-section="about">Story</a>
-        <a href="#contact" class="nav-link font-mono text-[11px] tracking-[0.15em] uppercase text-kk-muted hover:text-kk-accent transition-colors duration-300" data-section="contact">Contact</a>
+      <div class="flex items-center gap-4 sm:gap-6">
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#work" class="nav-link font-mono text-[11px] tracking-[0.15em] uppercase transition-colors duration-300" style="color:var(--muted)" data-section="work">Work</a>
+          <a href="#about" class="nav-link font-mono text-[11px] tracking-[0.15em] uppercase transition-colors duration-300" style="color:var(--muted)" data-section="about">Story</a>
+          <a href="#contact" class="nav-link font-mono text-[11px] tracking-[0.15em] uppercase transition-colors duration-300" style="color:var(--muted)" data-section="contact">Contact</a>
+        </div>
+        <!-- Theme Toggle (Desktop) -->
+        <button class="theme-toggle" id="theme-toggle-desktop" aria-label="Toggle theme">
+          <span class="theme-toggle-knob">🌙</span>
+        </button>
+        <!-- Hamburger -->
+        <button class="md:hidden flex flex-col gap-[5px] p-2" id="nav-toggle" aria-label="Toggle menu">
+          <span class="block w-6 h-[2px] transition-all duration-300 origin-center" style="background:var(--text)"></span>
+          <span class="block w-6 h-[2px] transition-all duration-300" style="background:var(--text)"></span>
+          <span class="block w-4 h-[2px] transition-all duration-300 origin-center" style="background:var(--text)"></span>
+        </button>
       </div>
-      <button class="md:hidden flex flex-col gap-[5px] p-2" id="nav-toggle" aria-label="Toggle menu">
-        <span class="block w-6 h-[2px] bg-kk-text transition-all duration-300 origin-center"></span>
-        <span class="block w-6 h-[2px] bg-kk-text transition-all duration-300"></span>
-        <span class="block w-4 h-[2px] bg-kk-text transition-all duration-300 origin-center"></span>
-      </button>
     </div>
   </nav>
 
   <!-- Mobile Menu -->
-  <div class="fixed inset-0 bg-kk-bg/98 backdrop-blur-xl z-40 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-400" id="mobile-menu">
+  <div class="fixed inset-0 backdrop-blur-xl z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-400" id="mobile-menu" style="background:var(--bg);opacity:0">
     <div class="text-center space-y-6">
-      <a href="#work" class="mobile-link block text-5xl font-bold tracking-tight text-kk-muted hover:text-kk-accent transition-all duration-300">Work</a>
-      <a href="#about" class="mobile-link block text-5xl font-bold tracking-tight text-kk-muted hover:text-kk-accent transition-all duration-300">Story</a>
-      <a href="#contact" class="mobile-link block text-5xl font-bold tracking-tight text-kk-muted hover:text-kk-accent transition-all duration-300">Contact</a>
+      <a href="#work" class="mobile-link block text-4xl sm:text-5xl font-bold tracking-tight transition-all duration-300" style="color:var(--muted)">Work</a>
+      <a href="#about" class="mobile-link block text-4xl sm:text-5xl font-bold tracking-tight transition-all duration-300" style="color:var(--muted)">Story</a>
+      <a href="#contact" class="mobile-link block text-4xl sm:text-5xl font-bold tracking-tight transition-all duration-300" style="color:var(--muted)">Contact</a>
     </div>
+    <button class="theme-toggle mt-10" id="theme-toggle-mobile" aria-label="Toggle theme">
+      <span class="theme-toggle-knob">🌙</span>
+    </button>
   </div>
 
-  <!-- ========== HERO SECTION ========== -->
-  <section id="hero" class="relative min-h-screen flex flex-col justify-center px-5 md:px-8 pt-24 pb-20 overflow-hidden">
-    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-8 lg:gap-16 items-center">
-      <!-- Left: Text -->
+  <!-- HERO -->
+  <section id="hero" class="relative min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-8 pt-20 sm:pt-24 pb-28 sm:pb-20 overflow-hidden">
+    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-6 sm:gap-8 lg:gap-16 items-center">
       <div class="order-2 lg:order-1 text-center lg:text-left">
-        <div class="inline-flex items-center gap-3 mb-5 obs-animate" data-delay="0">
-          <span class="w-10 h-[1px] bg-kk-accent"></span>
-          <span class="font-mono text-[10px] tracking-[0.25em] uppercase text-kk-accent">Street / Documentary / Real Life</span>
+        <div class="inline-flex items-center gap-3 mb-4 sm:mb-5 obs-animate" data-delay="0">
+          <span class="w-8 sm:w-10 h-[1px]" style="background:var(--accent)"></span>
+          <span class="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.25em] uppercase" style="color:var(--accent)">Street / Documentary / Real Life</span>
         </div>
-        <h1 class="text-[clamp(3.5rem,10vw,9rem)] font-bold leading-[0.82] tracking-tighter mb-6 obs-animate" data-delay="100">
+        <h1 class="text-[clamp(3rem,10vw,9rem)] font-bold leading-[0.82] tracking-tighter mb-4 sm:mb-6 obs-animate" data-delay="100">
           <span class="block">KAUNG</span>
           <span class="block text-transparent stroke-text">KAUNG</span>
         </h1>
-        <p class="font-mono text-sm text-kk-muted leading-relaxed max-w-md mx-auto lg:mx-0 mb-4 obs-animate" data-delay="200">
+        <p class="font-mono text-xs sm:text-sm leading-relaxed max-w-md mx-auto lg:mx-0 mb-3 sm:mb-4 obs-animate" data-delay="200" style="color:var(--muted)">
           Raw frames from the streets of Mae Sot.<br class="hidden md:block" />
           Resistance. Culture. Survival. Truth.
         </p>
-        <div class="flex items-center gap-2 justify-center lg:justify-start mb-8 obs-animate" data-delay="250">
+        <div class="flex items-center gap-2 justify-center lg:justify-start mb-6 sm:mb-8 obs-animate" data-delay="250">
           <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse-dot"></span>
-          <span class="font-mono text-[11px] text-kk-muted">Mae Sot, Thailand — Thai-Myanmar Border</span>
+          <span class="font-mono text-[10px] sm:text-[11px]" style="color:var(--muted)">Mae Sot, Thailand — Thai-Myanmar Border</span>
         </div>
         <div class="flex flex-wrap gap-3 justify-center lg:justify-start obs-animate" data-delay="300">
-          <a href="#work" class="px-7 py-3 bg-kk-accent text-kk-bg font-mono text-xs tracking-[0.1em] uppercase hover:bg-white transition-all duration-300 hover:-translate-y-0.5" id="hero-cta-btn">View Work</a>
-          <a href="#about" class="px-7 py-3 border border-kk-border text-kk-text font-mono text-xs tracking-[0.1em] uppercase hover:border-kk-accent hover:text-kk-accent transition-all duration-300 hover:-translate-y-0.5">The Story</a>
+          <a href="#work" class="px-5 sm:px-7 py-2.5 sm:py-3 font-mono text-xs tracking-[0.1em] uppercase transition-all duration-300 hover:-translate-y-0.5" style="background:var(--accent);color:var(--bg)" id="hero-cta-btn">View Work</a>
+          <a href="#about" class="px-5 sm:px-7 py-2.5 sm:py-3 border font-mono text-xs tracking-[0.1em] uppercase transition-all duration-300 hover:-translate-y-0.5" style="border-color:var(--border);color:var(--text)">The Story</a>
         </div>
       </div>
-      <!-- Right: Profile Image -->
-      <div class="order-1 lg:order-2 flex justify-center obs-animate" data-delay="150">
-        <div class="relative w-[220px] h-[290px] sm:w-[280px] sm:h-[370px] lg:w-[360px] lg:h-[480px] profile-frame overflow-hidden">
-          <img src="profile/profile_2.webp" alt="Kaung Kaung — Documentary Photographer" class="w-full h-full object-cover grayscale-[40%] contrast-[1.15] brightness-[0.85] hover:grayscale-0 hover:contrast-100 hover:brightness-100 transition-all duration-700" loading="eager" id="hero-profile-img" />
+      <div class="order-1 lg:order-2 flex flex-col items-center obs-animate" data-delay="150">
+        <div class="relative w-[180px] h-[240px] sm:w-[250px] sm:h-[330px] lg:w-[340px] lg:h-[450px] profile-frame overflow-hidden">
+          <img src="profile/profile_2.webp" alt="Kaung Kaung" class="w-full h-full object-cover transition-all duration-700" style="filter:grayscale(var(--img-grayscale)) contrast(var(--img-contrast)) brightness(var(--img-brightness))" loading="eager" id="hero-profile-img" />
+        </div>
+        <!-- Stats under profile -->
+        <div class="flex items-center gap-3 sm:gap-5 mt-4 sm:mt-6">
+          <div class="text-center"><span class="block text-xl sm:text-2xl font-bold" data-count="87">0</span><span class="font-mono text-[8px] sm:text-[9px] tracking-[0.15em] uppercase" style="color:var(--muted)">Frames</span></div>
+          <span class="font-mono text-sm" style="color:var(--border)">/</span>
+          <div class="text-center"><span class="block text-xl sm:text-2xl font-bold" data-count="5">0</span><span class="font-mono text-[8px] sm:text-[9px] tracking-[0.15em] uppercase" style="color:var(--muted)">Stories</span></div>
+          <span class="font-mono text-sm" style="color:var(--border)">/</span>
+          <div class="text-center"><span class="block text-xl sm:text-2xl font-bold" data-count="3">0</span><span class="font-mono text-[8px] sm:text-[9px] tracking-[0.15em] uppercase" style="color:var(--muted)">Years</span></div>
         </div>
       </div>
     </div>
 
-    <!-- Scroll Cue -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 hidden lg:flex obs-animate" data-delay="600">
-      <div class="w-[1px] h-10 bg-gradient-to-b from-kk-accent to-transparent scroll-cue"></div>
-      <span class="font-mono text-[9px] tracking-[0.2em] uppercase text-kk-muted">Scroll</span>
-    </div>
-
-    <!-- Stats (bottom right) -->
-    <div class="absolute bottom-8 right-8 hidden lg:flex items-center gap-5">
-      <div class="text-center">
-        <span class="block text-3xl font-bold" data-count="87">0</span>
-        <span class="font-mono text-[9px] tracking-[0.15em] uppercase text-kk-muted">Frames</span>
-      </div>
-      <span class="font-mono text-kk-border text-lg">/</span>
-      <div class="text-center">
-        <span class="block text-3xl font-bold" data-count="5">0</span>
-        <span class="font-mono text-[9px] tracking-[0.15em] uppercase text-kk-muted">Stories</span>
-      </div>
-      <span class="font-mono text-kk-border text-lg">/</span>
-      <div class="text-center">
-        <span class="block text-3xl font-bold" data-count="3">0</span>
-        <span class="font-mono text-[9px] tracking-[0.15em] uppercase text-kk-muted">Years</span>
-      </div>
+      <div class="w-[1px] h-10 scroll-cue" style="background:linear-gradient(to bottom,var(--accent),transparent)"></div>
+      <span class="font-mono text-[9px] tracking-[0.2em] uppercase" style="color:var(--muted)">Scroll</span>
     </div>
   </section>
 
-  <!-- ========== MARQUEE STRIP ========== -->
-  <div class="py-6 overflow-hidden border-y border-kk-border/50 bg-kk-surface/50">
+  <!-- MARQUEE -->
+  <div class="py-4 sm:py-6 overflow-hidden" style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface)">
     <div class="hero-marquee" id="marquee-track"></div>
   </div>
 
-  <!-- ========== WORK / PORTFOLIO ========== -->
-  <section id="work" class="py-16 md:py-24 px-5 md:px-8">
+  <!-- WORK -->
+  <section id="work" class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8">
     <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-12 obs-animate">
-        <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-kk-accent block mb-3">// Portfolio</span>
-        <h2 class="text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-tight">THE WORK</h2>
-        <p class="font-mono text-sm text-kk-muted mt-3 max-w-lg mx-auto">From street corners to concert halls. Protests to prize fights. Every frame, a story.</p>
+      <div class="text-center mb-8 sm:mb-12 obs-animate">
+        <span class="font-mono text-[10px] tracking-[0.2em] uppercase block mb-3" style="color:var(--accent)">// Portfolio</span>
+        <h2 class="text-[clamp(1.8rem,5vw,3.5rem)] font-bold tracking-tight">THE WORK</h2>
+        <p class="font-mono text-xs sm:text-sm mt-3 max-w-lg mx-auto" style="color:var(--muted)">From street corners to concert halls. Protests to prize fights. Every frame, a story.</p>
       </div>
-      <!-- Filter Bar -->
-      <div class="flex flex-wrap justify-center gap-2 mb-10 obs-animate" id="filter-bar" data-delay="100">
-        <button class="filter-btn active font-mono text-[11px] tracking-[0.05em] px-4 py-2 border border-kk-border text-kk-muted hover:border-kk-accent hover:text-kk-accent transition-all duration-300" data-collection="all" id="filter-all">All</button>
+      <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 obs-animate" id="filter-bar" data-delay="100">
+        <button class="filter-btn active font-mono text-[10px] sm:text-[11px] tracking-[0.05em] px-3 sm:px-4 py-1.5 sm:py-2 border transition-all duration-300" data-collection="all" id="filter-all">All</button>
       </div>
-      <!-- Masonry Grid -->
       <div class="masonry-grid" id="masonry-grid"></div>
-      <!-- Load More -->
-      <div class="text-center mt-10" id="load-more-wrap">
-        <button class="px-8 py-3 border border-kk-border text-kk-text font-mono text-xs tracking-[0.1em] uppercase hover:bg-kk-accent hover:text-kk-bg hover:border-kk-accent transition-all duration-300" id="load-more-btn">Load More</button>
+      <div class="text-center mt-8 sm:mt-10" id="load-more-wrap">
+        <button class="px-6 sm:px-8 py-2.5 sm:py-3 border font-mono text-xs tracking-[0.1em] uppercase transition-all duration-300" style="border-color:var(--border);color:var(--text)" id="load-more-btn">Load More</button>
       </div>
     </div>
   </section>
 
-  <!-- Section Divider -->
   <div class="section-divider"></div>
 
-  <!-- ========== ABOUT SECTION ========== -->
-  <section id="about" class="py-16 md:py-24 px-5 md:px-8 bg-kk-surface">
+  <!-- ABOUT -->
+  <section id="about" class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8" style="background:var(--surface)">
     <div class="max-w-6xl mx-auto">
-      <!-- Heading -->
-      <div class="text-center mb-14 obs-animate">
-        <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-kk-accent block mb-3">// About</span>
-        <h2 class="text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-tight">THE PHOTOGRAPHER</h2>
+      <div class="text-center mb-10 sm:mb-14 obs-animate">
+        <span class="font-mono text-[10px] tracking-[0.2em] uppercase block mb-3" style="color:var(--accent)">// About</span>
+        <h2 class="text-[clamp(1.8rem,5vw,3.5rem)] font-bold tracking-tight">THE PHOTOGRAPHER</h2>
       </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-20 items-start">
-        <!-- Left: Portrait -->
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-8 sm:gap-12 lg:gap-20 items-start">
         <div class="obs-animate" data-delay="0">
-          <div class="relative aspect-[3/4] max-w-[400px] mx-auto overflow-hidden border border-kk-border group profile-frame">
-            <img src="profile/profile_1.webp" alt="Kaung Kaung portrait" class="w-full h-full object-cover grayscale-[50%] contrast-110 group-hover:grayscale-0 group-hover:contrast-100 transition-all duration-700" loading="lazy" />
+          <div class="relative aspect-[3/4] max-w-[320px] sm:max-w-[400px] mx-auto overflow-hidden border group profile-frame" style="border-color:var(--border)">
+            <img src="profile/profile_1.webp" alt="Kaung Kaung portrait" class="w-full h-full object-cover transition-all duration-700" style="filter:grayscale(50%) contrast(1.1)" loading="lazy" />
           </div>
-          <div class="inline-flex items-center gap-2 mt-4 px-3 py-2 bg-kk-elevated border border-kk-border">
-            <span>📍</span>
-            <span class="font-mono text-xs text-kk-muted">Mae Sot, Thailand</span>
+          <div class="inline-flex items-center gap-2 mt-4 px-3 py-2 border" style="background:var(--elevated);border-color:var(--border)">
+            <span>📍</span><span class="font-mono text-xs" style="color:var(--muted)">Mae Sot, Thailand</span>
           </div>
         </div>
-
-        <!-- Right: Story Timeline -->
         <div class="obs-animate" data-delay="100">
-          <div class="space-y-5 text-kk-muted text-[15px] leading-[1.85] mb-8">
-            <p><strong class="text-kk-text">Thaw Zin Htet</strong>, known as <em class="text-kk-accent/80">Kaung Kaung</em>, is a Burmese documentary and street photographer based in Mae Sot, Thailand. Born on April 24, 1998 in Myanmar, he was forced to flee his homeland due to political upheaval following the 2021 military coup.</p>
+          <div class="space-y-4 sm:space-y-5 text-sm sm:text-[15px] leading-[1.8] sm:leading-[1.85] mb-6 sm:mb-8" style="color:var(--muted)">
+            <p><strong style="color:var(--text)">Thaw Zin Htet</strong>, known as <em style="color:var(--accent)">Kaung Kaung</em>, is a Burmese documentary and street photographer based in Mae Sot, Thailand. Born on April 24, 1998 in Myanmar, he was forced to flee his homeland due to political upheaval following the 2021 military coup.</p>
             <p>After actively participating in pro-democracy protests from February 2021, Kaung Kaung faced military raids on his home and was forced to flee through KNU-controlled ethnic liberation areas. He witnessed intense fighting in Lay Kay Kaw and helped evacuate civilians under fire before reaching Thailand in January 2022.</p>
             <p>Now living as a refugee on the Thai-Myanmar border, he channels his experiences into powerful visual narratives. His camera becomes his voice — capturing street life, concert culture, Muay Thai fights, mountain landscapes, and the quiet dignity of displaced communities.</p>
           </div>
-
-          <blockquote class="border-l-2 border-kk-accent pl-5 my-8 font-serif italic text-xl text-kk-accent/90 leading-snug">
-            "Every moment of truth deserves a witness. I am that witness."
-          </blockquote>
-
-          <!-- Timeline -->
-          <div class="relative pl-8 space-y-6 mt-10">
+          <blockquote class="border-l-2 pl-4 sm:pl-5 my-6 sm:my-8 font-serif italic text-lg sm:text-xl leading-snug" style="border-color:var(--accent);color:var(--accent)">"Every moment of truth deserves a witness. I am that witness."</blockquote>
+          <div class="relative pl-8 space-y-5 sm:space-y-6 mt-8 sm:mt-10">
             <div class="timeline-line"></div>
-            <div class="flex items-start gap-4">
-              <div class="timeline-dot mt-1"></div>
-              <div>
-                <span class="font-mono text-[10px] tracking-[0.15em] uppercase text-kk-accent">1998</span>
-                <p class="text-sm text-kk-muted mt-1">Born in Myanmar — a story begins</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-4">
-              <div class="timeline-dot mt-1"></div>
-              <div>
-                <span class="font-mono text-[10px] tracking-[0.15em] uppercase text-kk-accent">Feb 2021</span>
-                <p class="text-sm text-kk-muted mt-1">Joined pro-democracy protests, camera in hand</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-4">
-              <div class="timeline-dot mt-1"></div>
-              <div>
-                <span class="font-mono text-[10px] tracking-[0.15em] uppercase text-kk-accent">Jan 2022</span>
-                <p class="text-sm text-kk-muted mt-1">Fled to Thailand through conflict zones</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-4">
-              <div class="timeline-dot mt-1"></div>
-              <div>
-                <span class="font-mono text-[10px] tracking-[0.15em] uppercase text-kk-accent">Now</span>
-                <p class="text-sm text-kk-muted mt-1">Documenting life on the Thai-Myanmar border</p>
-              </div>
-            </div>
+            <div class="flex items-start gap-4"><div class="timeline-dot mt-1"></div><div><span class="font-mono text-[10px] tracking-[0.15em] uppercase" style="color:var(--accent)">1998</span><p class="text-xs sm:text-sm mt-1" style="color:var(--muted)">Born in Myanmar — a story begins</p></div></div>
+            <div class="flex items-start gap-4"><div class="timeline-dot mt-1"></div><div><span class="font-mono text-[10px] tracking-[0.15em] uppercase" style="color:var(--accent)">Feb 2021</span><p class="text-xs sm:text-sm mt-1" style="color:var(--muted)">Joined pro-democracy protests, camera in hand</p></div></div>
+            <div class="flex items-start gap-4"><div class="timeline-dot mt-1"></div><div><span class="font-mono text-[10px] tracking-[0.15em] uppercase" style="color:var(--accent)">Jan 2022</span><p class="text-xs sm:text-sm mt-1" style="color:var(--muted)">Fled to Thailand through conflict zones</p></div></div>
+            <div class="flex items-start gap-4"><div class="timeline-dot mt-1"></div><div><span class="font-mono text-[10px] tracking-[0.15em] uppercase" style="color:var(--accent)">Now</span><p class="text-xs sm:text-sm mt-1" style="color:var(--muted)">Documenting life on the Thai-Myanmar border</p></div></div>
           </div>
-
-          <!-- Tags -->
-          <div class="flex flex-wrap gap-2 mt-10">
-            <span class="font-mono text-[10px] px-3 py-1.5 border border-kk-border text-kk-muted hover:border-kk-accent hover:text-kk-accent transition-all duration-300 cursor-default">Street Photography</span>
-            <span class="font-mono text-[10px] px-3 py-1.5 border border-kk-border text-kk-muted hover:border-kk-accent hover:text-kk-accent transition-all duration-300 cursor-default">Documentary</span>
-            <span class="font-mono text-[10px] px-3 py-1.5 border border-kk-border text-kk-muted hover:border-kk-accent hover:text-kk-accent transition-all duration-300 cursor-default">Event Coverage</span>
-            <span class="font-mono text-[10px] px-3 py-1.5 border border-kk-border text-kk-muted hover:border-kk-accent hover:text-kk-accent transition-all duration-300 cursor-default">Concert / Nightlife</span>
-            <span class="font-mono text-[10px] px-3 py-1.5 border border-kk-border text-kk-muted hover:border-kk-accent hover:text-kk-accent transition-all duration-300 cursor-default">Muay Thai</span>
-            <span class="font-mono text-[10px] px-3 py-1.5 border border-kk-border text-kk-muted hover:border-kk-accent hover:text-kk-accent transition-all duration-300 cursor-default">Landscape</span>
+          <div class="flex flex-wrap gap-1.5 sm:gap-2 mt-8 sm:mt-10">
+            <span class="font-mono text-[9px] sm:text-[10px] px-2.5 sm:px-3 py-1 sm:py-1.5 border cursor-default transition-all duration-300" style="border-color:var(--border);color:var(--muted)">Street Photography</span>
+            <span class="font-mono text-[9px] sm:text-[10px] px-2.5 sm:px-3 py-1 sm:py-1.5 border cursor-default transition-all duration-300" style="border-color:var(--border);color:var(--muted)">Documentary</span>
+            <span class="font-mono text-[9px] sm:text-[10px] px-2.5 sm:px-3 py-1 sm:py-1.5 border cursor-default transition-all duration-300" style="border-color:var(--border);color:var(--muted)">Event Coverage</span>
+            <span class="font-mono text-[9px] sm:text-[10px] px-2.5 sm:px-3 py-1 sm:py-1.5 border cursor-default transition-all duration-300" style="border-color:var(--border);color:var(--muted)">Concert / Nightlife</span>
+            <span class="font-mono text-[9px] sm:text-[10px] px-2.5 sm:px-3 py-1 sm:py-1.5 border cursor-default transition-all duration-300" style="border-color:var(--border);color:var(--muted)">Muay Thai</span>
+            <span class="font-mono text-[9px] sm:text-[10px] px-2.5 sm:px-3 py-1 sm:py-1.5 border cursor-default transition-all duration-300" style="border-color:var(--border);color:var(--muted)">Landscape</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section Divider -->
   <div class="section-divider"></div>
 
-  <!-- ========== CONTACT ========== -->
-  <section id="contact" class="py-16 md:py-24 px-5 md:px-8">
+  <!-- CONTACT -->
+  <section id="contact" class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8">
     <div class="max-w-2xl mx-auto text-center obs-animate">
-      <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-kk-accent block mb-3">// Contact</span>
-      <h2 class="text-[clamp(2.5rem,6vw,4.5rem)] font-bold tracking-tight mb-4">LET'S<br /><em class="font-serif text-transparent stroke-text-sm not-italic">CONNECT</em></h2>
-      <p class="text-kk-muted text-sm mb-10 leading-relaxed">Collaborations. Event coverage. Documentary projects.<br />Got a story? Let's tell it.</p>
+      <span class="font-mono text-[10px] tracking-[0.2em] uppercase block mb-3" style="color:var(--accent)">// Contact</span>
+      <h2 class="text-[clamp(2rem,6vw,4.5rem)] font-bold tracking-tight mb-4">LET'S<br /><em class="font-serif text-transparent stroke-text-sm not-italic">CONNECT</em></h2>
+      <p class="text-xs sm:text-sm mb-8 sm:mb-10 leading-relaxed" style="color:var(--muted)">Collaborations. Event coverage. Documentary projects.<br />Got a story? Let's tell it.</p>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-lg mx-auto">
-        <a href="mailto:thawzinhtet273@gmail.com" class="flex flex-col items-center gap-2 p-6 bg-kk-surface border border-kk-border hover:border-kk-accent hover:-translate-y-1 transition-all duration-300 group" id="contact-email">
-          <span class="text-xl">✉️</span>
-          <span class="font-mono text-[9px] tracking-[0.15em] uppercase text-kk-muted">Email</span>
-          <span class="font-mono text-xs group-hover:text-kk-accent transition-colors">Get in touch</span>
+        <a href="mailto:thawzinhtet273@gmail.com" class="flex flex-col items-center gap-2 p-4 sm:p-6 border transition-all duration-300 group hover:-translate-y-1" style="background:var(--surface);border-color:var(--border)" id="contact-email">
+          <span class="text-xl">✉️</span><span class="font-mono text-[9px] tracking-[0.15em] uppercase" style="color:var(--muted)">Email</span><span class="font-mono text-xs transition-colors">Get in touch</span>
         </a>
-        <a href="tel:+66950032094" class="flex flex-col items-center gap-2 p-6 bg-kk-surface border border-kk-border hover:border-kk-accent hover:-translate-y-1 transition-all duration-300 group" id="contact-phone">
-          <span class="text-xl">📱</span>
-          <span class="font-mono text-[9px] tracking-[0.15em] uppercase text-kk-muted">Phone</span>
-          <span class="font-mono text-xs group-hover:text-kk-accent transition-colors">095-003-2094</span>
+        <a href="tel:+66950032094" class="flex flex-col items-center gap-2 p-4 sm:p-6 border transition-all duration-300 group hover:-translate-y-1" style="background:var(--surface);border-color:var(--border)" id="contact-phone">
+          <span class="text-xl">📱</span><span class="font-mono text-[9px] tracking-[0.15em] uppercase" style="color:var(--muted)">Phone</span><span class="font-mono text-xs transition-colors">095-003-2094</span>
         </a>
-        <div class="flex flex-col items-center gap-2 p-6 bg-kk-surface border border-kk-border" id="contact-location">
-          <span class="text-xl">📍</span>
-          <span class="font-mono text-[9px] tracking-[0.15em] uppercase text-kk-muted">Based in</span>
-          <span class="font-mono text-xs">Mae Sot, TH</span>
+        <div class="flex flex-col items-center gap-2 p-4 sm:p-6 border" style="background:var(--surface);border-color:var(--border)" id="contact-location">
+          <span class="text-xl">📍</span><span class="font-mono text-[9px] tracking-[0.15em] uppercase" style="color:var(--muted)">Based in</span><span class="font-mono text-xs">Mae Sot, TH</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== FOOTER ========== -->
-  <footer class="border-t border-kk-border py-6 px-5 md:px-8">
+  <!-- FOOTER -->
+  <footer class="py-5 sm:py-6 px-4 sm:px-6 md:px-8" style="border-top:1px solid var(--border)">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-      <p class="font-mono text-[10px] text-kk-muted">&copy; 2025 Kaung Kaung. All rights reserved.</p>
-      <p class="font-mono text-[10px] text-kk-muted">All photographs by Thaw Zin Htet</p>
+      <p class="font-mono text-[9px] sm:text-[10px]" style="color:var(--muted)">&copy; 2025 Kaung Kaung. All rights reserved.</p>
+      <p class="font-mono text-[9px] sm:text-[10px]" style="color:var(--muted)">All photographs by Thaw Zin Htet</p>
     </div>
   </footer>
 
-  <!-- ========== LIGHTBOX ========== -->
-  <div class="fixed inset-0 bg-black/97 z-[200] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-400" id="lightbox">
-    <button class="absolute top-5 right-5 text-white/50 hover:text-kk-accent text-2xl z-[201] bg-transparent border-none cursor-pointer transition-colors" id="lightbox-close" aria-label="Close">✕</button>
-    <button class="absolute top-1/2 left-4 -translate-y-1/2 text-white/50 hover:text-kk-accent text-4xl z-[201] bg-transparent border-none cursor-pointer transition-colors" id="lightbox-prev" aria-label="Previous">‹</button>
-    <button class="absolute top-1/2 right-4 -translate-y-1/2 text-white/50 hover:text-kk-accent text-4xl z-[201] bg-transparent border-none cursor-pointer transition-colors" id="lightbox-next" aria-label="Next">›</button>
-    <img src="" alt="" id="lightbox-img" class="max-w-[90vw] max-h-[85vh] object-contain opacity-0 transition-all duration-300 scale-95" />
-    <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-4" id="lightbox-info">
-      <span class="lightbox-collection font-mono text-xs text-white/40"></span>
-      <span class="lightbox-counter font-mono text-xs text-white/40"></span>
+  <!-- LIGHTBOX (UPGRADED) -->
+  <div class="fixed inset-0 z-[200] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-400" id="lightbox" style="background:rgba(0,0,0,0.96)">
+    <button class="absolute top-4 right-4 sm:top-5 sm:right-5 w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center text-lg z-[202] backdrop-blur-md transition-all duration-300 hover:scale-110" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)" id="lightbox-close" aria-label="Close">✕</button>
+    <!-- Large prev/next areas -->
+    <button class="lb-nav-area nav-prev" id="lb-prev-area" aria-label="Previous"><span class="lb-nav-icon">‹</span></button>
+    <button class="lb-nav-area nav-next" id="lb-next-area" aria-label="Next"><span class="lb-nav-icon">›</span></button>
+    <img src="" alt="" id="lightbox-img" class="max-w-[92vw] max-h-[82vh] sm:max-w-[90vw] sm:max-h-[85vh] object-contain opacity-0 scale-95" />
+    <!-- Bottom bar -->
+    <div class="lb-bottom-bar" id="lightbox-info">
+      <span class="lightbox-collection font-mono text-[10px] sm:text-xs text-white/40"></span>
+      <div class="lb-filmstrip" id="lb-filmstrip"></div>
+      <span class="lightbox-counter font-mono text-[10px] sm:text-xs text-white/40"></span>
     </div>
   </div>
 
