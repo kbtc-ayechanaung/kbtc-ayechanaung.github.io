@@ -1,0 +1,17 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Source archives (too large for GitHub)
+*.zip
+
+# PDF source
+*.pdf
+
+# Original full-res JPGs
+_DSC*.jpg
+
+# Editor
+.vscode/
+*.swp
+*.swo

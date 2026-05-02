@@ -1,0 +1,229 @@
+/* ===== KAUNG KAUNG — STYLE SYSTEM ===== */
+
+/* --- GRAIN OVERLAY --- */
+#grain-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 256px;
+}
+
+/* --- SCROLLBAR --- */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #060606; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #c8ff00; }
+
+/* --- SELECTION --- */
+::selection { background: #c8ff00; color: #060606; }
+
+/* --- STROKE TEXT --- */
+.stroke-text {
+  -webkit-text-stroke: 2px #c8ff00;
+  text-stroke: 2px #c8ff00;
+}
+.stroke-text-sm {
+  -webkit-text-stroke: 1.5px #c8ff00;
+  text-stroke: 1.5px #c8ff00;
+}
+
+/* --- CURSOR FOLLOWER --- */
+#cursor-glow {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(200,255,0,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  position: fixed;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s linear;
+  will-change: transform;
+}
+
+/* --- NAV SCROLL STATE --- */
+#main-nav.scrolled {
+  background: rgba(6, 6, 6, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+#main-nav.scrolled > div { padding-top: 0.65rem; padding-bottom: 0.65rem; }
+
+/* --- NAV LINK UNDERLINE --- */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #c8ff00;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-link.active { color: #c8ff00; }
+
+/* --- HAMBURGER ACTIVE --- */
+#nav-toggle.active span:first-child { transform: rotate(45deg) translate(5px, 5px); }
+#nav-toggle.active span:nth-child(2) { opacity: 0; }
+#nav-toggle.active span:nth-child(3) { width: 24px; transform: rotate(-45deg) translate(5px, -5px); }
+
+/* --- MOBILE MENU ACTIVE --- */
+#mobile-menu.active { opacity: 1; pointer-events: all; }
+
+/* --- HERO SCROLL CUE --- */
+.scroll-cue { animation: scrollCue 2.4s ease-in-out infinite; }
+@keyframes scrollCue {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50% { opacity: 0.25; transform: scaleY(0.4); }
+}
+
+/* --- HORIZONTAL SCROLLER (HERO MARQUEE) --- */
+.hero-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 60s linear infinite;
+}
+.hero-marquee:hover { animation-play-state: paused; }
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* --- MASONRY GRID --- */
+.masonry-grid {
+  columns: 3;
+  column-gap: 5px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+@media (max-width: 1024px) { .masonry-grid { columns: 2; } }
+@media (max-width: 640px) { .masonry-grid { columns: 1; max-width: 500px; } }
+
+/* --- GRID ITEMS --- */
+.grid-item {
+  break-inside: avoid;
+  margin-bottom: 5px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(18px) scale(0.98);
+  animation: gridReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.grid-item img {
+  width: 100%;
+  display: block;
+  filter: grayscale(30%) contrast(1.12) brightness(0.85);
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s ease;
+}
+.grid-item:hover img {
+  filter: grayscale(0%) contrast(1) brightness(1);
+  transform: scale(1.05);
+}
+.grid-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 40%, rgba(0,0,0,0.75) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.grid-item:hover .grid-item-overlay { opacity: 1; }
+.grid-item-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: #c8ff00;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+@keyframes gridReveal {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* --- FILTER BUTTONS --- */
+.filter-btn.active {
+  background: #c8ff00;
+  color: #060606;
+  border-color: #c8ff00;
+}
+
+/* --- LIGHTBOX --- */
+#lightbox.active { opacity: 1; pointer-events: all; }
+#lightbox.active #lightbox-img { opacity: 1; transform: scale(1); }
+
+/* --- SCROLL-REVEAL (Intersection Observer) --- */
+.obs-animate {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.obs-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- PROFILE FRAME --- */
+.profile-frame { position: relative; }
+.profile-frame::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid rgba(200,255,0,0.2);
+  transform: translate(8px, -8px);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+.profile-frame:hover::before {
+  transform: translate(4px, -4px);
+}
+.profile-frame:hover img {
+  filter: grayscale(0%) contrast(1) brightness(1) !important;
+}
+
+/* --- ABOUT TIMELINE --- */
+.timeline-line {
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, #c8ff00, transparent);
+}
+.timeline-dot {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #c8ff00;
+  border-radius: 50%;
+  background: #060606;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- HOVER TRANSITIONS --- */
+a, button { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* --- RESPONSIVE FIXES --- */
+@media (max-width: 640px) {
+  .masonry-grid { column-gap: 4px; }
+  .grid-item { margin-bottom: 4px; }
+  #cursor-glow { display: none; }
+  .hero-marquee { animation-duration: 30s; }
+}
+
+/* --- PARALLAX HINT --- */
+.parallax-section {
+  will-change: transform;
+}
+
+/* --- DIVIDER LINES --- */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(200,255,0,0.15), transparent);
+  margin: 0 auto;
+  max-width: 600px;
+}
