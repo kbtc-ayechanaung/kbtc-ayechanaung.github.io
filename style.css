@@ -1,47 +1,47 @@
 /* ===== KAUNG KAUNG — STYLE SYSTEM v4 ===== */
 
-/* --- DARK MODE — Neon Street (reference match) --- */
+/* --- DARK MODE — Cyan Neon / Dark Steel --- */
 :root {
-  --bg: #0a0a0a;
-  --surface: #111111;
-  --elevated: #1a1a1a;
-  --border: #282828;
-  --text: #e8e8e8;
-  --muted: #777777;
-  --accent: #d4ff00;
-  --accent-rgb: 212, 255, 0;
+  --bg: #0c0e13;
+  --surface: #12151b;
+  --elevated: #1a1d25;
+  --border: #252830;
+  --text: #e6e8ec;
+  --muted: #7a7e8a;
+  --accent: #00e0ff;
+  --accent-rgb: 0, 224, 255;
   --accent-warm: #ff6b35;
-  --nav-bg: rgba(10, 10, 10, 0.92);
+  --nav-bg: rgba(12, 14, 19, 0.92);
   --grain-opacity: 0.025;
   --img-grayscale: 25%;
   --img-contrast: 1.1;
   --img-brightness: 0.88;
-  --scrollbar-track: #0a0a0a;
-  --scrollbar-thumb: #333333;
-  --timeline-dot-bg: #0a0a0a;
-  --stroke-color: #d4ff00;
+  --scrollbar-track: #0c0e13;
+  --scrollbar-thumb: #252830;
+  --timeline-dot-bg: #0c0e13;
+  --stroke-color: #00e0ff;
 }
 
-/* --- LIGHT MODE — Warm Ivory / Olive Gold --- */
+/* --- LIGHT MODE — Warm Sand / Terracotta Film --- */
 html.light {
-  --bg: #f8f6f1;
-  --surface: #efece5;
-  --elevated: #e5e1d8;
-  --border: #d0cbbf;
-  --text: #1a1815;
-  --muted: #7a7568;
-  --accent: #8b7e2a;
-  --accent-rgb: 139, 126, 42;
-  --accent-warm: #c44b25;
-  --nav-bg: rgba(248, 246, 241, 0.92);
-  --grain-opacity: 0.012;
+  --bg: #f5f1eb;
+  --surface: #ece7de;
+  --elevated: #e1dbd0;
+  --border: #cdc5b6;
+  --text: #231f1a;
+  --muted: #7d7469;
+  --accent: #c2552d;
+  --accent-rgb: 194, 85, 45;
+  --accent-warm: #b91c1c;
+  --nav-bg: rgba(245, 241, 235, 0.93);
+  --grain-opacity: 0.018;
   --img-grayscale: 5%;
-  --img-contrast: 1.04;
-  --img-brightness: 0.98;
-  --scrollbar-track: #f8f6f1;
-  --scrollbar-thumb: #d0cbbf;
-  --timeline-dot-bg: #f8f6f1;
-  --stroke-color: #8b7e2a;
+  --img-contrast: 1.06;
+  --img-brightness: 0.97;
+  --scrollbar-track: #f5f1eb;
+  --scrollbar-thumb: #cdc5b6;
+  --timeline-dot-bg: #f5f1eb;
+  --stroke-color: #c2552d;
 }
 
 /* --- THEME TRANSITION (only when toggling) --- */
