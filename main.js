@@ -126,15 +126,19 @@ function setupNav() {
   });
 
   toggle.addEventListener('click', () => {
-    toggle.classList.toggle('active');
-    menu.classList.toggle('active');
-    document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+    const isOpen = toggle.classList.toggle('active');
+    menu.classList.toggle('active', isOpen);
+    menu.style.opacity = isOpen ? '1' : '0';
+    menu.style.pointerEvents = isOpen ? 'all' : 'none';
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
   document.querySelectorAll('.mobile-link').forEach(link => {
     link.addEventListener('click', () => {
       toggle.classList.remove('active');
       menu.classList.remove('active');
+      menu.style.opacity = '0';
+      menu.style.pointerEvents = 'none';
       document.body.style.overflow = '';
     });
   });
