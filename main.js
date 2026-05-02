@@ -348,7 +348,7 @@ function toggleTheme() {
   // Update cursor glow
   const glow = document.getElementById('cursor-glow');
   if (glow) {
-    const rgb = state.isDark ? '167, 139, 250' : '180, 83, 9';
+    const rgb = state.isDark ? '167, 139, 250' : '37, 99, 235';
     glow.style.background = `radial-gradient(circle, rgba(${rgb}, 0.07) 0%, transparent 70%)`;
   }
 
