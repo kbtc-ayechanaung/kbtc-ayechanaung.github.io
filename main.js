@@ -79,10 +79,10 @@ function renderGrid() {
   state.currentImages = filtered.slice(0, state.visibleCount);
 
   grid.innerHTML = '';
+  const items = [];
   state.currentImages.forEach((img, i) => {
     const item = document.createElement('div');
-    item.className = 'grid-item';
-    item.style.animationDelay = `${(i % 12) * 0.04}s`;
+    item.className = 'grid-item grid-entering';
     item.innerHTML = `
       <img src="${img.thumb}" alt="${img.collectionTitle} — street photography by Kaung Kaung" loading="lazy" />
       <div class="grid-item-overlay">
@@ -91,6 +91,16 @@ function renderGrid() {
     `;
     item.addEventListener('click', () => openLightbox(i));
     grid.appendChild(item);
+    items.push(item);
+  });
+
+  // Staggered reveal after DOM paint
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      items.forEach((item, i) => {
+        setTimeout(() => item.classList.replace('grid-entering', 'grid-visible'), i * 35);
+      });
+    });
   });
 
   const wrap = document.getElementById('load-more-wrap');
@@ -348,7 +358,7 @@ function toggleTheme() {
   // Update cursor glow
   const glow = document.getElementById('cursor-glow');
   if (glow) {
-    const rgb = state.isDark ? '167, 139, 250' : '37, 99, 235';
+    const rgb = state.isDark ? '167, 139, 250' : '194, 85, 45';
     glow.style.background = `radial-gradient(circle, rgba(${rgb}, 0.07) 0%, transparent 70%)`;
   }
 
